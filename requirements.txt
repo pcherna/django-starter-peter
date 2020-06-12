@@ -38,7 +38,7 @@ django-crispy-forms==1.8.1
 django-debug-toolbar==2.1
 django-encrypted-model-fields==0.5.8
 django-environ==0.4.5
-django-extensions==2.2.5
+django-extensions==2.2.9
 django-filter==2.2.0
 django-model-utils==4.0.0
 django-redis==4.11.0
