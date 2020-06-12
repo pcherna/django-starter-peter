@@ -18,13 +18,6 @@
 
     {% include "paginator.html" %}
 
-    <div>Path: {{ request.path }}</div>
-    <div>Full path: {{ request.get_full_path }}</div>
-    <div>Absolute URI: {{ request.build_absolute_uri }}</div>
-    <div>CA: {{ request.resolver_match.url_name }}</div>
-    <div>Desired: {% url 'artists-list' %}</div>
-    <div>Desired: {% url request.resolver_match.url_name %}</div>
-    <div>Count: {{ objects.count }}</div>
     {% for object in objects %}
         <div class="card mb-4">
             <article class="card-body media content-section">
