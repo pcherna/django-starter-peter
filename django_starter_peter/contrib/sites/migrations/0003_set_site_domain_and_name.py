@@ -13,8 +13,8 @@ def update_site_forward(apps, schema_editor):
     Site.objects.update_or_create(
         id=settings.SITE_ID,
         defaults={
-            "domain": "10net.net",
-            "name": "MPCAS Manager",
+            "domain": "cherna.com",
+            "name": "django_starter_peter",
         },
     )
 
