@@ -1,0 +1,25 @@
+<script>
+    function filter_and_refresh(clear) {
+        var filter = document.getElementById("searchbox").value
+        if (clear) { filter = "" }
+        window.location.href = "{% url request.resolver_match.url_name %}?filter=" + filter
+    }
+    function filter_keyup(event) {
+        if (event.key == 'Enter') {
+            filter_and_refresh(false)
+        }
+    }
+</script>
+
+<span class="ml-4 text-muted btn btn-sm" disabled="True">Search:</span>
+
+<input class="form-control form-control-sm" id="searchbox" type="text" onkeyup="filter_keyup(event)" value="{{filter}}" placeholder="Search by title">
+
+<button class="btn btn-outline-info btn-sm ml-1" id="searchbutton" onclick="filter_and_refresh(false)">Search</button>
+
+{% if objects.count == unfiltered_count %}
+    <span class="btn btn-sm">({{unfiltered_count}} {{objectname}}{{unfiltered_count|pluralize}})</span>
+{% else %}
+    <button class="btn btn-info btn-sm ml-1" id="searchbutton" onclick="filter_and_refresh(true)">Clear</button>
+    <span class="btn btn-sm">(matches {{objects.count}} of {{unfiltered_count}} {{objectname}}{{unfiltered_count|pluralize}})</span>
+{% endif %}

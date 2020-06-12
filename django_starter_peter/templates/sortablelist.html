@@ -1,0 +1,16 @@
+<span class="text-muted btn btn-sm" disabled="True">Sort:</span>
+{% if sort == 'name' %}
+    <a class="btn btn-light btn-sm" href="{% url request.resolver_match.url_name %}?sort=-name">Name&nbsp;▲</a>
+{% elif sort == '-name' %}
+    <a class="btn btn-light btn-sm" href="{% url request.resolver_match.url_name %}?sort=name">Name&nbsp;▼</a>
+{% else %}
+    <a class="btn btn-light btn-sm" href="{% url request.resolver_match.url_name %}?sort=name">Name</a>
+{% endif %}
+
+{% if sort == 'modification_date' %}
+    <a class="btn btn-light btn-sm ml-2" href="{% url request.resolver_match.url_name %}?sort=-modification_date">Last Modified&nbsp;▲</a>
+{% elif sort == '-modification_date' %}
+    <a class="btn btn-light btn-sm ml-2" href="{% url request.resolver_match.url_name %}?sort=modification_date">Last Modified&nbsp;▼</a>        
+{% else %}
+    <a class="btn btn-light btn-sm ml-2" href="{% url request.resolver_match.url_name %}?sort=-modification_date">Last Modified</a>
+{% endif %}
