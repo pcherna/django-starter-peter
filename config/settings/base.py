@@ -6,8 +6,8 @@ import environ
 
 ROOT_DIR = (
     environ.Path(__file__) - 3
-)  # (project/config/settings/base.py - 3 = project/)
-APPS_DIR = ROOT_DIR.path("project")
+)  # (django_starter_peter/config/settings/base.py - 3 = django_starter_peter/)
+APPS_DIR = ROOT_DIR.path("django_starter_peter")
 
 env = environ.Env()
 
@@ -83,7 +83,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "project.users.apps.UsersConfig",
+    "django_starter_peter.users.apps.UsersConfig",
     # Your stuff: custom apps go here
     "artists.apps.ArtistsConfig",
 ]
@@ -93,7 +93,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # MIGRATIONS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#migration-modules
-MIGRATION_MODULES = {"sites": "project.contrib.sites.migrations"}
+MIGRATION_MODULES = {"sites": "django_starter_peter.contrib.sites.migrations"}
 
 # AUTHENTICATION
 # ------------------------------------------------------------------------------
@@ -200,7 +200,7 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
-                "project.utils.context_processors.settings_context",
+                "django_starter_peter.utils.context_processors.settings_context",
             ],
         },
     }
@@ -278,9 +278,9 @@ ACCOUNT_EMAIL_REQUIRED = True
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_ADAPTER = "project.users.adapters.AccountAdapter"
+ACCOUNT_ADAPTER = "django_starter_peter.users.adapters.AccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-SOCIALACCOUNT_ADAPTER = "project.users.adapters.SocialAccountAdapter"
+SOCIALACCOUNT_ADAPTER = "django_starter_peter.users.adapters.SocialAccountAdapter"
 
 
 # Your stuff...

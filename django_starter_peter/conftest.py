@@ -2,7 +2,7 @@ import pytest
 from django.conf import settings
 from django.test import RequestFactory
 
-from project.users.tests.factories import UserFactory
+from django_starter_peter.users.tests.factories import UserFactory
 
 
 @pytest.fixture(autouse=True)

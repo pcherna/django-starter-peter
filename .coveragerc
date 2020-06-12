@@ -1,5 +1,5 @@
 [run]
-include = project/*
+include = django_starter_peter/*
 omit = *migrations*, *tests*
 plugins =
     django_coverage_plugin

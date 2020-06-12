@@ -1,4 +1,4 @@
-django-starter-peter
+django_starter_peter
 
 Django starter project with what Peter has learned, more or less ready for AWS
 
@@ -38,7 +38,7 @@ Running type checks with mypy:
 
 ::
 
-  $ mypy project
+  $ mypy django_starter_peter
 
 Test coverage
 ^^^^^^^^^^^^^
