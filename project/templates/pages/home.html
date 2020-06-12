@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+Select "Artists" in the menu bar to manage content.
+{% else %}
+Click "Sign In" or "Sign Up" in the menu bar to begin.
+{% endif %}
+{% endblock content %}

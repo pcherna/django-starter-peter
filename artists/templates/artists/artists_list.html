@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <nav class="my-3">
+        {% if perms.artists.add_artist %}
+            <a class="btn btn-outline-success" href="{% url 'artist-create' %}">+ New Artist</a>
+        {% endif %}
+        {% if perms.artists.add_artist %}
+            <a class="btn btn-outline-warning" href="{% url 'artists-export' %}">Export Artist List as CSV</a>
+        {% endif %}
+    </nav>
+
+    <div class="input-group mb-3">
+        <span class="text-muted btn btn-sm" disabled="True">Sort:</span>
+        {% if sort == 'name' %}
+            <a class="btn btn-light btn-sm" href="{% url 'artists-list' %}?sort=-name">Name&nbsp;▲</a>
+        {% elif sort == '-name' %}
+            <a class="btn btn-light btn-sm" href="{% url 'artists-list' %}?sort=name">Name&nbsp;▼</a>        
+        {% else %}
+            <a class="btn btn-light btn-sm" href="{% url 'artists-list' %}?sort=name">Name</a>
+        {% endif %}
+
+        {% if sort == 'modification_date' %}
+            <a class="btn btn-light btn-sm ml-2" href="{% url 'artists-list' %}?sort=-modification_date">Last Modified&nbsp;▲</a>
+        {% elif sort == '-modification_date' %}
+            <a class="btn btn-light btn-sm ml-2" href="{% url 'artists-list' %}?sort=modification_date">Last Modified&nbsp;▼</a>        
+        {% else %}
+            <a class="btn btn-light btn-sm ml-2" href="{% url 'artists-list' %}?sort=-modification_date">Last Modified</a>
+        {% endif %}
+
+        <script>
+            function filter_and_refresh(clear) {
+                var filter = document.getElementById("searchbox").value
+                if (clear) { filter = "" }
+                window.location.href = "{% url 'artists-list' %}?filter=" + filter
+            }
+            function filter_keyup(event) {
+                if (event.key == 'Enter') {
+                    filter_and_refresh(false)
+                }
+            }
+        </script>
+        <span class="ml-4 text-muted btn btn-sm" disabled="True">Search:</span>
+        <input class="form-control form-control-sm" id="searchbox" type="text" onkeyup="filter_keyup(event)" value="{{filter}}" placeholder="Search by title">
+        <button class="btn btn-outline-info btn-sm ml-1" id="searchbutton" onclick="filter_and_refresh(false)">Search</button>
+        {% if paginator.count == total_count %}
+            <span class="btn btn-sm">({{total_count}} Artist{{total_count|pluralize}})</span>
+        {% else %}
+            <button class="btn btn-info btn-sm ml-1" id="searchbutton" onclick="filter_and_refresh(true)">Clear</button>
+            <span class="btn btn-sm">(matches {{paginator.count}} of {{total_count}} Artist{{total_count|pluralize}})</span>
+        {% endif %}
+    </div>
+
+    {% include "paginator.html" %}
+
+    {% for object in objects %}
+        <div class="card mb-4">
+            <article class="card-body media content-section">
+                <div class="w-100 m-2">
+                    <h3><a href="{% url 'artist-detail' object.id %}" class="article-title">{{object.name}}</a></h3>
+                    <h5>{{object.net_role}}</h5>
+                </div>
+            </article>
+        </div>
+    {% endfor %}
+
+    {% include "paginator.html" %}
+
+{% endblock content %}

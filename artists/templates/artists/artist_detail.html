@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load tz %}
+{% load humanize %}
+
+{% block content %}
+    <nav class="my-3">
+        <div class="form-group">
+            <a href="{% url 'artists-list' %}" class="btn btn-outline-secondary">&lt; Artist List</a>
+            {% if perms.artists.add_artist %}
+                <a class="btn btn-outline-success" href="{% url 'artist-create' %}">+ New Artist</a>
+            {% endif %}
+            {% if perms.artists.change_artist %}
+                <a href="{% url 'artist-update' object.id %}" class="btn btn-outline-primary">Edit Artist</a>
+            {% endif %}
+            {% if perms.artists.delete_artist %}
+                <a href="{% url 'artist-delete' object.id %}" class="btn btn-outline-danger">Delete Artist</a>
+            {% endif %}
+        </div>
+    </nav>
+    
+    <article class="media content-section">
+        <div>
+            <h2 class="article-title">{{object.name}}</h2>
+            <h4>{{object.net_role}}</h4>
+
+            {% if object.bio %}
+                <h3 class="mt-4">Artist Bio</h3>
+                {{object.bio|linebreaks}}
+            {% endif %}
+
+            {% if object.public_url or object.public_twitter or object.public_instagram %}
+            <h3 class="mt-4">Links</h3>
+            <ul>
+                {% if object.public_url %}
+                    <li>Artist Website: <a href="{{object.public_url}}">{{object.public_url}}</a></li>
+                {% endif %}
+                {% if object.public_twitter %}
+                    <li>Twitter: <a href="https://twitter.com/{{object.public_twitter}}">{{object.public_twitter}}</a></li>
+                {% endif %}
+                {% if object.public_instagram %}
+                    <li>Instagram: <a href="https://instagram.com/{{object.public_instagram}}">{{object.public_instagram}}</a></li>
+                {% endif %}
+            </ul>
+            {% endif %}
+
+            {% if object.private_email or object.private_phone %}
+                <h3 class="mt-4">Private Contact Info</h3>
+                <ul>
+                    {% if object.private_email %}
+                        <li>Email: {{object.private_email}}</li>
+                    {% endif %}
+                    {% if object.private_phone %}
+                        <li>Phone: {{object.private_phone}}</li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+
+            <div class="mt-4 text-muted">
+                <div><em>Created: {{ object.creation_date|naturaltime }} by {{ object.creation_user }}</em></div>
+                {% if object.modification_user %}
+                    <div><em>Last Modified: {{ object.modification_date|naturaltime }} by {{ object.modification_user }}</em></div>
+                {% endif %}
+            </em>
+        </div>
+    </article>
+{% endblock content %}

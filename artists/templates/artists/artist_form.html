@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    
+    <div class="content-section">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% if object.id %}
+                <legend class="h3 border-bottom mb-4">Edit Artist</legend>
+            {% else %}
+                <legend class="h3 border-bottom mb-4">New Artist</legend>
+            {% endif %}
+            <fieldset class="form-group">
+                <legend class="h4 border-bottom mb-4">Artist Info</legend>
+                <div class="ml-4">
+                    {{ form.name|as_crispy_field }}
+                    {{ form.role|as_crispy_field }}
+                    {{ form.curator|as_crispy_field }}
+                    {{ form.bio|as_crispy_field }}
+                </div>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <legend class="h4 border-bottom mb-4">Links</legend>
+                <div class="ml-4">
+                    {{ form.public_url|as_crispy_field }}
+                    {{ form.public_twitter|as_crispy_field }}
+                    {{ form.public_instagram|as_crispy_field }}
+                </div>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <legend class="h4 border-bottom mb-4">Private Contact Info</legend>
+                <div class="ml-4">
+                    {{ form.private_email|as_crispy_field }}
+                    {{ form.private_phone|as_crispy_field }}
+                </div>                
+            </fieldset>
+
+            <div class="form-group">
+                {% if object.id %}
+                    <a href="{% url 'artist-detail' object.id %}" class="btn btn-outline-danger">Cancel</a>
+                {% else %}
+                    <a href="{% url 'artists-list' %}" class="btn btn-outline-danger">Cancel</a>
+                {% endif %}
+                <button class="btn btn-outline-primary" type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock content %}

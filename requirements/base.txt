@@ -1,0 +1,74 @@
+pytz==2019.3  # https://github.com/stub42/pytz
+python-slugify==4.0.0  # https://github.com/un33k/python-slugify
+Pillow==6.2.1  # https://github.com/python-pillow/Pillow
+argon2-cffi==19.2.0  # https://github.com/hynek/argon2_cffi
+whitenoise==5.0.1  # https://github.com/evansd/whitenoise
+redis==3.3.11  # https://github.com/antirez/redis
+
+# Django
+# ------------------------------------------------------------------------------
+django==2.2.12  # pyup: < 3.0  # https://www.djangoproject.com/
+django-environ==0.4.5  # https://github.com/joke2k/django-environ
+django-model-utils==4.0.0  # https://github.com/jazzband/django-model-utils
+django-allauth==0.41.0  # https://github.com/pennersr/django-allauth
+django-crispy-forms==1.8.1  # https://github.com/django-crispy-forms/django-crispy-forms
+django-redis==4.11.0  # https://github.com/niwinz/django-redis
+
+# Django REST Framework
+djangorestframework==3.11.0  # https://github.com/encode/django-rest-framework
+coreapi==2.3.3  # https://github.com/core-api/python-client
+
+# Added by Peter
+# ------------------------------------------------------------------------------
+django-cors-headers==3.2.1
+django-bootstrap-datepicker-plus==3.0.5
+django-bootstrap4==1.1.1
+django-encrypted-model-fields==0.5.8
+markdown==3.1.1 # For the REST API web pages
+supervisor==4.1.0
+django-import-export==2.0.2
+django-admin-interface==0.12.2
+
+# Using pip-chill to audit the dependencies I have:
+# ------------------------------------------------------------------------------
+
+# From pip-chill, these I need to figure out:
+# django-filter==2.2.0
+
+# From pip-chill, already in base.txt:
+# python-slugify==4.0.0
+# argon2-cffi==19.2.0
+# django-environ==0.4.5
+# django-model-utils==4.0.0
+# django-crispy-forms==1.8.1
+# django-redis==4.11.0
+# djangorestframework==3.11.0
+# coreapi==2.3.3
+# pillow==6.2.1
+# whitenoise==5.0.1
+# django-allauth==0.41.0
+
+
+# From pip-chill, already in local.txt:
+# argon2-cffi==19.2.0
+# black==19.10b0
+# werkzeug==0.16.0
+# ipdb==0.12.3
+# sphinx==2.3.0
+# psycopg2-binary==2.8.4
+# mypy==0.761
+# pylint-django==2.0.13
+# pytest-django==3.7.0
+# pytest-sugar==0.9.2
+# flake8==3.7.9
+# factory-boy==2.12.0
+# django-debug-toolbar==2.1
+# django-coverage-plugin==1.6.0
+# django-extensions==2.2.5
+# pre-commit==1.20.0
+
+
+# From pip-chill, but belong in local.txt:
+# awsebcli==3.17.0
+# pip-chill==0.1.8
+# doc8==0.8.0
