@@ -10,7 +10,7 @@ from django.views.generic import (
     DetailView,
     CreateView,
     UpdateView,
-    DeleteView
+    DeleteView,
 )
 
 from .models import Artist
@@ -18,29 +18,39 @@ from .serializers import ArtistSerializer
 from .forms import ArtistForm
 from .admin import ArtistResource
 
-from django_starter_peter.mixins.sortfilter import SortableListMixin, FilterableListMixin
+from django_starter_peter.mixins.sortfilter import (
+    SortableListMixin,
+    FilterableListMixin,
+)
 
 logger = logging.getLogger(__name__)
 
-class ArtistsListView(SortableListMixin, FilterableListMixin, LoginRequiredMixin, UserPassesTestMixin, ListView):
+
+class ArtistsListView(
+    SortableListMixin,
+    FilterableListMixin,
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    ListView,
+):
     model = Artist
     paginate_by = 20
-    template_name = 'artists/artists_list.html'
-    context_object_name = 'objects'
+    template_name = "artists/artists_list.html"
+    context_object_name = "objects"
 
     def get_context_data(self, *args, **kwargs):
         context = super(ArtistsListView, self).get_context_data(*args, **kwargs)
         return context
 
     def test_func(self):
-        return self.request.user.has_perm('artists.view_artist')
+        return self.request.user.has_perm("artists.view_artist")
 
 
 class ArtistDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     model = Artist
 
     def test_func(self):
-        return self.request.user.has_perm('artists.view_artist')
+        return self.request.user.has_perm("artists.view_artist")
 
 
 class ArtistCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
@@ -52,7 +62,7 @@ class ArtistCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         return super().form_valid(form)
 
     def test_func(self):
-        return self.request.user.has_perm('artists.add_artist')
+        return self.request.user.has_perm("artists.add_artist")
 
 
 class ArtistUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -65,25 +75,26 @@ class ArtistUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return super().form_valid(form)
 
     def test_func(self):
-        return self.request.user.has_perm('artists.change_artist')
+        return self.request.user.has_perm("artists.change_artist")
 
 
 class ArtistDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Artist
-    success_url = reverse_lazy('artists-list')
+    success_url = reverse_lazy("artists-list")
 
     def test_func(self):
-        return self.request.user.has_perm('artists.delete_artist')
+        return self.request.user.has_perm("artists.delete_artist")
+
 
 # By putting a Byte-Order-Mark at the head of the CSV file, it loads into Excel
 # with proper Unicode support
-BOM = '\ufeff'
+BOM = "\ufeff"
+
 
 def artist_export_view(request):
     dataset = ArtistResource().export()
-    response = HttpResponse(BOM + dataset.csv,
-                            content_type='text/csv; charset=utf-8')
-    response['Content-Disposition'] = 'attachment; filename="artists_export.csv"'
+    response = HttpResponse(BOM + dataset.csv, content_type="text/csv; charset=utf-8")
+    response["Content-Disposition"] = 'attachment; filename="artists_export.csv"'
     return response
 
 
@@ -93,12 +104,12 @@ def artist_export_view(request):
 class ArtistsListAPI(generics.ListCreateAPIView):
     queryset = Artist.objects.all()
     serializer_class = ArtistSerializer
-    name = 'Artists'
+    name = "Artists"
     permission_classes = [permissions.DjangoModelPermissionsOrAnonReadOnly]
 
 
 class ArtistDetailAPI(generics.RetrieveUpdateDestroyAPIView):
     queryset = Artist.objects.all()
     serializer_class = ArtistSerializer
-    name = 'Artist Detail'
+    name = "Artist Detail"
     permission_classes = [permissions.DjangoModelPermissionsOrAnonReadOnly]

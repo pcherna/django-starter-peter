@@ -42,9 +42,7 @@ LOCALE_PATHS = [ROOT_DIR.path("locale")]
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
-DATABASES = {
-    "default": env.db("DATABASE_URL", default="postgres:///django-starter-peter")
-}
+DATABASES = {"default": env.db("DATABASE_URL", default="postgres:///django-starter-peter")}
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
 # URLS
@@ -63,14 +61,14 @@ DJANGO_APPS = [
     "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django.contrib.humanize", # Handy template tags
-    'admin_interface', # Third-party, but has to come before django.contrib.admin
-    'colorfield', # Third-party, but has to come before django.contrib.admin
+    "django.contrib.humanize",  # Handy template tags
+    "admin_interface",  # Third-party, but has to come before django.contrib.admin
+    "colorfield",  # Third-party, but has to come before django.contrib.admin
     "django.contrib.admin",
 ]
 THIRD_PARTY_APPS = [
-    'corsheaders',
-    'encrypted_model_fields',
+    "corsheaders",
+    "encrypted_model_fields",
     "crispy_forms",
     "allauth",
     "allauth.account",
@@ -121,9 +119,7 @@ PASSWORD_HASHERS = [
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
@@ -150,7 +146,7 @@ MIDDLEWARE = [
 # https://github.com/adamchainz/django-cors-headers
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_METHODS = ["GET", "OPTIONS"]
-CORS_URLS_REGEX = r'^/api/.*$'
+CORS_URLS_REGEX = r"^/api/.*$"
 
 # STATIC
 # ------------------------------------------------------------------------------
@@ -226,9 +222,7 @@ X_FRAME_OPTIONS = "DENY"
 # EMAIL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
-EMAIL_BACKEND = env(
-    "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend"
-)
+EMAIL_BACKEND = env("DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend")
 # https://docs.djangoproject.com/en/2.2/ref/settings/#email-timeout
 EMAIL_TIMEOUT = 5
 
@@ -251,16 +245,11 @@ LOGGING = {
     "disable_existing_loggers": False,
     "formatters": {
         "verbose": {
-            "format": "%(levelname)s %(asctime)s %(module)s "
-                      "%(process)d %(thread)d %(message)s"
+            "format": "%(levelname)s %(asctime)s %(module)s " "%(process)d %(thread)d %(message)s"
         }
     },
     "handlers": {
-        "console": {
-            "level": "DEBUG",
-            "class": "logging.StreamHandler",
-            "formatter": "verbose",
-        }
+        "console": {"level": "DEBUG", "class": "logging.StreamHandler", "formatter": "verbose",}
     },
     # Set to "level": "DEBUG" to see more messages
     "root": {"level": "INFO", "handlers": ["console"]},
@@ -288,12 +277,12 @@ SOCIALACCOUNT_ADAPTER = "django_starter_peter.users.adapters.SocialAccountAdapte
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
-    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.URLPathVersioning',
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication'
+    "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.URLPathVersioning",
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
     ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
+    ],
 }
