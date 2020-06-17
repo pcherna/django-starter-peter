@@ -1,8 +1,9 @@
 {
-    "python.pythonPath": "venv_old/bin/python3",
+    "python.pythonPath": "/usr/local/bin/python3",
     "python.linting.pylintEnabled": true,
     "restructuredtext.confPath": "${workspaceFolder}/docs",
     "search.exclude": {
         "**/migrations": true
-    }
+    },
+    "python.formatting.provider": "black"
 }

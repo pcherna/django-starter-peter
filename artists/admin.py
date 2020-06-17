@@ -14,7 +14,6 @@ class ArtistResource(resources.ModelResource):
             'name',
             'bio',
             'role',
-            'curator',
             'public_url',
             'public_twitter',
             'public_instagram',
