@@ -35,7 +35,7 @@ django-bootstrap-datepicker-plus==3.0.5
 django-bootstrap4==1.1.1
 django-coverage-plugin==1.6.0
 django-crispy-forms==1.8.1
-django-debug-toolbar==2.1
+django-debug-toolbar==2.2.1
 django-encrypted-model-fields==0.5.8
 django-environ==0.4.5
 django-extensions==2.2.9
