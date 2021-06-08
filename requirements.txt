@@ -83,7 +83,7 @@ pathspec==0.5.9
 pbr==5.4.4
 pexpect==4.7.0
 pickleshare==0.7.5
-Pillow==6.2.1
+Pillow==8.2.0
 pip-chill==0.1.8
 pluggy==0.13.1
 pre-commit==1.20.0
